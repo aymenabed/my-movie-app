@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_KEY = '0b95afb3acd6b44830a1fed30276752a';
-const BASE_URL = 'https://api.themoviedb.org/3';
+const API_KEY = "0b95afb3acd6b44830a1fed30276752a";
+const BASE_URL = "https://api.themoviedb.org/3";
 
 interface SearchParams {
   title?: string;
@@ -14,15 +14,15 @@ export const searchMovies = async (params: SearchParams) => {
 
     let queryString = `api_key=${API_KEY}`;
     if (title) queryString += `&query=${encodeURIComponent(title)}`;
-    if (year) queryString += `&primary_release_year=${encodeURIComponent(year)}`;
+    if (year)
+      queryString += `&primary_release_year=${encodeURIComponent(year)}`;
 
     const response = await axios.get(`${BASE_URL}/search/movie?${queryString}`);
     return response.data.results;
   } catch (error) {
-    throw new Error('Failed to fetch movies');
+    throw new Error("Failed to fetch movies");
   }
 };
-
 
 export const getMovieDetails = async (movieId: number) => {
   try {
@@ -33,7 +33,7 @@ export const getMovieDetails = async (movieId: number) => {
     });
     return response.data;
   } catch (error) {
-    throw new Error('Failed to fetch movie details');
+    throw new Error("Failed to fetch movie details");
   }
 };
 
@@ -46,7 +46,7 @@ export const getMovieCredits = async (movieId: number) => {
     });
     return response.data.cast;
   } catch (error) {
-    throw new Error('Failed to fetch movie credits');
+    throw new Error("Failed to fetch movie credits");
   }
 };
 
